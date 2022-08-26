@@ -14,7 +14,7 @@ async function extract_list(data,page){
 
 
   $('div.section-body > div.list > div.book-item > div.book-detailed-item')
-    .each(function(){
+    .each(async function(){
 	const title = $(this).find('div.title').find('a').attr('title')
 
 	const id = $(this).find('div.title').find('a').attr('href').replace('/','')
@@ -50,10 +50,14 @@ async function extract_list(data,page){
 	description = "Not Available"
       }
 
+      let thumb = $(this).find('div.thumb').find('img').attr('data-src').replace('https://thumb.youmadcdn.xyz/file/img-mbuddy/thumb/','')
+
+
       manga_list.push({
 	id,
 	title,
 	views,
+	thumb,
 	rating,
 	category,
 	description

@@ -155,6 +155,32 @@ async function get_manga(res,chapter_id){
 
 }
 
+async function get_thumb(res,id){
+    const req = await axios("https://thumb.youmadcdn.xyz/file/img-mbuddy/thumb/" + id,{
+	headers : {
+        'authority': 'thumb.youmadcdn.xyz',
+	'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36',
+        'accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+        'sec-gpc': 1,
+        'sec-fetch-site': 'cross-site',
+        'sec-fetch-mode': 'no-cors',
+        'sec-fetch-dest': 'image',
+        'referer': 'https://mangabuddy.com/',
+        'accept-language': 'en-US,en;q=0.9',
+        'dnt': 1
+	},
+	responseType : 'arraybuffer'
+	})
+
+      const pre_data = await req.data
+      const buffer = Buffer.from(pre_data).toString('base64');
+      const data = `data:${req.headers["content-type"]};base64,${buffer}`
+
+      res.status(200).json({
+	image_uri : data
+      })
+
+}
 
 
 module.exports = {
@@ -166,5 +192,6 @@ module.exports = {
   sortAlphaNumeric,
   get_chapters,
   get_manga,
-  convetURL2URI
+  convetURL2URI,
+  get_thumb
 }

@@ -14,6 +14,7 @@ A Simple API to get latest Available Manga.
 7. `/chapter/manga_id` - `Get List of Chapters`
 8. `/view/chapter_id` - `Get Manga Details ALong with Image ID`
 9. `/uri/image_id` - `Get Image URI`
+10. `/thumb/thumb_id` - `Get Thumbnail` 
 
 ## Query Parameters
 

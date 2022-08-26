@@ -57,6 +57,11 @@ server.get('/uri/:link', (req,res) => {
   	func.convetURL2URI(res,url)
 })
 
+server.get('/thumb/:link', (req,res) => {
+  	const url = req.params.link
+  	func.get_thumb(res,url)
+})
+
 server.listen(port, 
   () => {
     console.log(`http://localhost:${port}`)

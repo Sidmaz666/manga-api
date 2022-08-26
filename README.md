@@ -17,7 +17,7 @@ A Simple API to get latest Available Manga.
 
 ## Query Parameters
 
-1. `?page=` - `Available on /,/recent,/list endpoints`
+1. `?page=` - `Available on /,/recent,/list, /search endpoints`
 2. `?q=` - `Available on /list endpoint, Sort by Number/Letters`
 3. `?key=` - `Available on /search endpoint, Search Manga based on keyword`
 

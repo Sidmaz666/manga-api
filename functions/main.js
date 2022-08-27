@@ -127,7 +127,8 @@ async function convetURL2URI(res,url){
 
 async function get_manga(res,chapter_id){
 	
-  const manga_id = chapter_id.replace(/_chapter.*/,'').replace('_','')
+  const manga_id = chapter_id.replace(/_chapter.*/g,'').replace('_','')
+    		   .replace(/_vol.*/g,'')
 
   const chapter = chapter_id.replaceAll('_','/').replace('/','')
 

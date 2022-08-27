@@ -50,14 +50,14 @@ async function extract_list(data,page){
 	description = "Not Available"
       }
 
-      let thumb = $(this).find('div.thumb').find('img').attr('data-src').replace('https://thumb.youmadcdn.xyz/file/img-mbuddy/thumb/','')
+      let thumb_id = $(this).find('div.thumb').find('img').attr('data-src').replace('https://thumb.youmadcdn.xyz/file/img-mbuddy/thumb/','')
 
 
       manga_list.push({
 	id,
 	title,
 	views,
-	thumb,
+	thumb_id,
 	rating,
 	category,
 	description
@@ -157,6 +157,9 @@ async function extract_manga(data_0,data_1,chapter_id){
 
   const description = $('div.summary > div.section-body').find('p').next().text().trim().replace(/[\n]/g,'').replace('SHOW MORE','').trim()
 
+  const thumb_id = $('div.book-info > div#cover').find('div.img-cover')
+    			.find('img').attr('data-src')
+    			.replace('https://thumb.youmadcdn.xyz/file/img-mbuddy/thumb/','')
 
   $ = cheerio.load(data_1)
 
@@ -173,6 +176,7 @@ async function extract_manga(data_0,data_1,chapter_id){
     last_updated,
     rating,
     description,
+    thumb_id,
     image_id
   }
 

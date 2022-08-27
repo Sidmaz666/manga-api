@@ -99,7 +99,7 @@ async function get_chapters(res,id){
 
 async function convetURL2URI(res,url){
 
-  const main_url = 'https://s1.mbcdnv1.xyz/file/img-mbuddy/manga/' + url.replaceAll('_','/')
+  const main_url = 'https://s1.mbcdnv1.xyz/file/img-mbuddy/manga/' + url.replaceAll('__','/')
 
   const req = await axios(main_url,{
 	headers : {
@@ -127,7 +127,7 @@ async function convetURL2URI(res,url){
 
 async function get_manga(res,chapter_id){
 	
-  const manga_id = chapter_id.replace(/_chapter.*/g,'').replace('_','')
+  const manga_id = chapter_id.replace(/_chapte.*/g,'').replace('_','')
     		   .replace(/_vol.*/g,'')
 
   const chapter = chapter_id.replaceAll('_','/').replace('/','')

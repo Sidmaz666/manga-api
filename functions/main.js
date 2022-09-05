@@ -13,7 +13,7 @@ const axios_header = {
 
 async function popular(res,page){
   try{
-  const req = await axios(`${base_url}popular?page=${page}`,axios_header)
+  const req = await axios.get(`${base_url}popular?page=${page}`,axios_header)
   const data = await req.data
   
   const list = await extract.extract_list(data,page)
@@ -30,7 +30,7 @@ async function popular(res,page){
 
 async function recent(res,page){
 try{
-  const req = await axios(`${base_url}latest?page=${page}`,axios_header)
+  const req = await axios.get(`${base_url}latest?page=${page}`,axios_header)
   const data = await req.data
   
   const list = await extract.extract_list(data,page)
@@ -46,7 +46,7 @@ try{
 
 async function search(res,page,key){
 try{
-  const req = await axios(`${base_url}search?q=${key}&page=${page}`,axios_header)
+  const req = await axios.get(`${base_url}search?q=${key}&page=${page}`,axios_header)
   const data = await req.data
   
   const list = await extract.extract_list(data,page)
@@ -62,7 +62,7 @@ try{
 
 async function all_category(res){
 try{
-  const req = await axios(`${base_url}genres`,axios_header)
+  const req = await axios.get(`${base_url}genres`,axios_header)
   const data = await req.data
   
   const list = await extract.extract_category(data)
@@ -79,7 +79,7 @@ try{
 
 async function category(res,category){
 try{
-  const req = await axios(`${base_url}genres/${category}`,axios_header)
+  const req = await axios.get(`${base_url}genres/${category}`,axios_header)
   const data = await req.data
   
   const list = await extract.extract_category_list(data)
@@ -96,7 +96,7 @@ try{
 
 async function sortAlphaNumeric(res,charc,page){
 try{
-  const req = await axios(`${base_url}az-list/${charc}?page=${page}`,axios_header)
+  const req = await axios.get(`${base_url}az-list/${charc}?page=${page}`,axios_header)
   const data = await req.data
   
   const list = await extract.extract_list(data,page)
@@ -112,7 +112,7 @@ try{
 
 async function get_chapters(res,id){
 try{
-  const req = await axios(`${base_url}api/manga/${id}/chapters?source=detail`,axios_header)
+  const req = await axios.get(`${base_url}api/manga/${id}/chapters?source=detail`,axios_header)
   const data = await req.data
   
   const list = await extract.extract_chapter(data)
@@ -130,7 +130,7 @@ async function convetURL2URI(res,url){
 try{
   const main_url = 'https://s1.mbcdnv1.xyz/file/img-mbuddy/manga/' + url.replaceAll('__','/')
 
-  const req = await axios(main_url,{
+  const req = await axios.get(main_url,{
 	headers : {
         'authority': 's1.mbcdnv1.xyz',
 	'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36',
@@ -193,7 +193,7 @@ try{
 
 async function get_thumb(res,id){
   try{
-    const req = await axios("https://thumb.youmadcdn.xyz/file/img-mbuddy/thumb/" + id,{
+    const req = await axios.get("https://thumb.youmadcdn.xyz/file/img-mbuddy/thumb/" + id,{
 	headers : {
         'authority': 'thumb.youmadcdn.xyz',
 	'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36',

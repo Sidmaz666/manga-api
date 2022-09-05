@@ -7,59 +7,58 @@ const server = express()
 
 server.use(cors())
 
-
 const port = process.env.PORT || 3020 
 
-server.get('/', (req,res) => {
+server.get('/', async (req,res) => {
    const page = req.query.page || 1
-   func.popular(res,page)
+   await func.popular(res,page)
 })
 
 
-server.get('/recent', (req,res) => {
+server.get('/recent', async (req,res) => {
    const page = req.query.page || 1
-   func.recent(res,page)
+   await func.recent(res,page)
 })
 
-server.get('/search', (req,res) => {
+server.get('/search', async (req,res) => {
    const page = req.query.page || 1
    const key = req.query.key
-   func.search(res,page,key)
+   await func.search(res,page,key)
 })
 
-server.get('/category', (req,res) => {
-   func.all_category(res)
+server.get('/category', async (req,res) => {
+   await func.all_category(res)
 })
 
-server.get('/category/:genre', (req,res) => {
+server.get('/category/:genre', async (req,res) => {
    const genre = req.params.genre
-   func.category(res,genre)
+   await func.category(res,genre)
 })
 
-server.get('/list', (req,res) => {
+server.get('/list', async (req,res) => {
   const charc = req.query.q || ''
   const page = req.query.page || 1
-  func.sortAlphaNumeric(res,charc,page)
+  await func.sortAlphaNumeric(res,charc,page)
 })
 
-server.get('/chapter/:id', (req,res) => {
+server.get('/chapter/:id', async (req,res) => {
 	const id = req.params.id 
-  	func.get_chapters(res,id)
+  	await func.get_chapters(res,id)
 })
 
-server.get('/view/:chapter_id', (req,res) => {
+server.get('/view/:chapter_id', async (req,res) => {
   	const id = req.params.chapter_id
-  	func.get_manga(res,id)
+  	await func.get_manga(res,id)
 })
 
-server.get('/uri/:link', (req,res) => {
+server.get('/uri/:link', async (req,res) => {
   	const url = req.params.link
-  	func.convetURL2URI(res,url)
+  	await func.convetURL2URI(res,url)
 })
 
-server.get('/thumb/:link', (req,res) => {
+server.get('/thumb/:link', async (req,res) => {
   	const url = req.params.link
-  	func.get_thumb(res,url)
+  	await func.get_thumb(res,url)
 })
 
 server.listen(port, 
@@ -67,4 +66,7 @@ server.listen(port,
     console.log(`http://localhost:${port}`)
   })
 
-module.exports = server
+module.exports = {
+  server,
+  func
+}

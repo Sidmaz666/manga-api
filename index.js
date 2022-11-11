@@ -1,11 +1,13 @@
-const express = require('express') 
-const cors = require('cors')
+import express from 'express'
+import cors from 'cors'
 
-const func = require('./functions/main.js')
+import * as func from './functions/main.js'
 
 const server = express()
 
-server.use(cors())
+server.use(cors({
+  origin: '*'
+}))
 
 const port = process.env.PORT || 3020 
 
@@ -66,3 +68,4 @@ server.listen(port,
     console.log(`http://localhost:${port}`)
   })
 
+module.exports = server

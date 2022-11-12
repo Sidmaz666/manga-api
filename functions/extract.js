@@ -1,4 +1,4 @@
-const cheerio = require('cheerio')
+import cheerio from 'cheerio'
 
 async function extract_list(data,page){
   
@@ -184,7 +184,7 @@ async function extract_manga(data_0,data_1,chapter_id){
 
 
 
-module.exports = {
+export {
   extract_list,
   extract_category,
   extract_category_list,

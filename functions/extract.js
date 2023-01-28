@@ -163,7 +163,12 @@ async function extract_manga(data_0,data_1,chapter_id){
 
   $ = cheerio.load(data_1)
 
-  const image_id = $('div#pf-sticky').next().next().text().replace('var chapImages = ','').replace(/\'/g,'').replaceAll('/','__').trim().split(',')
+  let image_id = $('div#pf-sticky').next().next().text().replace('var chapImages = ','').replace(/\'/g,'').replaceAll('/','__').trim().split(',')
+
+    if(image_id.includes('document.addEventListener(DOMContentLoaded'))
+    {
+      image_id = $('div#pf-sticky').next().next().next().next().text().replace('var chapImages = ','').replace(/\'/g,'').replaceAll('/','__').trim().split(',')
+    }
 
   return {
     chapter_id,

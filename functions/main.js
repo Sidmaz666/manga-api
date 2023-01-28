@@ -136,7 +136,7 @@ try{
 
 async function convetURL2URI(res,url){
 try{
-  const main_url = 'https://s1.mbcdnv1.xyz/file/img-mbuddy/manga/' + url.replaceAll('__','/')
+  const main_url = 'https://s1.mbbcdnv1.xyz/file/img-mbuddy/manga/' + url.replaceAll('__','/')
 
   const req = await fetch(main_url,{
     	headers : {
